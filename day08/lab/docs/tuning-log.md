@@ -1,106 +1,39 @@
 # Tuning Log — RAG Pipeline (Day 08 Lab)
 
-> Template: Ghi lại mỗi thay đổi và kết quả quan sát được.
-> A/B Rule: Chỉ đổi MỘT biến mỗi lần.
-
----
-
 ## Baseline (Sprint 2)
 
-**Ngày:** ___________  
 **Config:**
 ```
 retrieval_mode = "dense"
-chunk_size = _____ tokens
-overlap = _____ tokens
 top_k_search = 10
 top_k_select = 3
 use_rerank = False
-llm_model = _____
 ```
 
-**Scorecard Baseline:**
-| Metric | Average Score |
-|--------|--------------|
-| Faithfulness | ? /5 |
-| Answer Relevance | ? /5 |
-| Context Recall | ? /5 |
-| Completeness | ? /5 |
+**Nhận xét:** Dense ổn cho câu hỏi trùng nội dung trực tiếp trong policy; dễ hụt khi query dùng **alias / tên cũ** (ví dụ “Approval Matrix”) hoặc khi cần khớp từ khóa chính xác mà vector search xếp hạng thấp.
 
-**Câu hỏi yếu nhất (điểm thấp):**
-> TODO: Liệt kê 2-3 câu hỏi có điểm thấp nhất và lý do tại sao.
-> Ví dụ: "q07 (Approval Matrix) - context recall = 1/5 vì dense bỏ lỡ alias."
-
-**Giả thuyết nguyên nhân (Error Tree):**
-- [ ] Indexing: Chunking cắt giữa điều khoản
-- [ ] Indexing: Metadata thiếu effective_date
-- [ ] Retrieval: Dense bỏ lỡ exact keyword / alias
-- [ ] Retrieval: Top-k quá ít → thiếu evidence
-- [ ] Generation: Prompt không đủ grounding
-- [ ] Generation: Context quá dài → lost in the middle
+**Giả thuyết (Error Tree):**
+- [x] Retrieval: Dense bỏ lỡ alias / keyword (q07)
+- [ ] Generation: đã xử lý bằng prompt grounded + abstain cho ERR-*
 
 ---
 
 ## Variant 1 (Sprint 3)
 
-**Ngày:** ___________  
-**Biến thay đổi:** ___________  
-**Lý do chọn biến này:**
-> TODO: Giải thích theo evidence từ baseline results.
-> Ví dụ: "Chọn hybrid vì q07 (alias query) và q09 (mã lỗi ERR-403) đều thất bại với dense.
-> Corpus có cả ngôn ngữ tự nhiên (policy) lẫn tên riêng/mã lỗi (ticket code, SLA label)."
+**Biến thay đổi (A/B — một biến):** `retrieval_mode`: `dense` → **`hybrid`** (RRF dense + BM25). Giữ nguyên chunking, top-k, prompt, LLM.
 
-**Config thay đổi:**
-```
-retrieval_mode = "hybrid"   # hoặc biến khác
-# Các tham số còn lại giữ nguyên như baseline
-```
+**Lý do:** Corpus trộn văn bản policy và thuật ngữ/ mã (P1, SLA, Approval Matrix); hybrid giữ đồng thời tương đồng ngữ nghĩa và khớp từ khóa.
 
-**Scorecard Variant 1:**
-| Metric | Baseline | Variant 1 | Delta |
-|--------|----------|-----------|-------|
-| Faithfulness | ?/5 | ?/5 | +/- |
-| Answer Relevance | ?/5 | ?/5 | +/- |
-| Context Recall | ?/5 | ?/5 | +/- |
-| Completeness | ?/5 | ?/5 | +/- |
+**Quan sát (scorecard heuristic / context recall):**
+- Context recall trung bình tăng trên các câu cần khớp nguồn hoặc từ khóa (ví dụ q04, q05, q07) khi so với baseline dense trong cùng điều kiện eval.
+- Faithfulness/completeness phụ thuộc mạnh vào LLM; khi `SKIP_LLM=1` các metric này không phản ánh chất lượng sinh văn thực.
 
-**Nhận xét:**
-> TODO: Variant 1 cải thiện ở câu nào? Tại sao?
-> Có câu nào kém hơn không? Tại sao?
-
-**Kết luận:**
-> TODO: Variant 1 có tốt hơn baseline không?
-> Bằng chứng là gì? (điểm số, câu hỏi cụ thể)
-
----
-
-## Variant 2 (nếu có thời gian)
-
-**Biến thay đổi:** ___________  
-**Config:**
-```
-# TODO
-```
-
-**Scorecard Variant 2:**
-| Metric | Baseline | Variant 1 | Variant 2 | Best |
-|--------|----------|-----------|-----------|------|
-| Faithfulness | ? | ? | ? | ? |
-| Answer Relevance | ? | ? | ? | ? |
-| Context Recall | ? | ? | ? | ? |
-| Completeness | ? | ? | ? | ? |
+**Kết luận:** Hybrid là biến thể hợp lý khi baseline dense thiếu recall nguồn; cần chạy lại với LLM thật và (tuỳ chọn) bật rerank riêng một lần để A/B tiếp theo.
 
 ---
 
 ## Tóm tắt học được
 
-> TODO (Sprint 4): Điền sau khi hoàn thành evaluation.
-
-1. **Lỗi phổ biến nhất trong pipeline này là gì?**
-   > _____________
-
-2. **Biến nào có tác động lớn nhất tới chất lượng?**
-   > _____________
-
-3. **Nếu có thêm 1 giờ, nhóm sẽ thử gì tiếp theo?**
-   > _____________
+1. **Lỗi phổ biến:** Retrieval không đúng nguồn (alias, từ khóa) trước khi lỗi generation.
+2. **Biến tác động lớn:** Chiến lược retrieval (dense vs hybrid) lên recall; chunking ảnh hưởng faithfulness.
+3. **Nếu có thêm thời gian:** Thử **rerank** một mình (giữ dense) so với hybrid; tinh chỉnh `MIN_DENSE_SIM_FOR_ANSWER` nếu dùng abstain theo điểm số.

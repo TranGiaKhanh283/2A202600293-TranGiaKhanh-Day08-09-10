@@ -19,7 +19,15 @@ A/B Rule (từ slide):
 
 import json
 import csv
+import re
+import sys
 from pathlib import Path
+
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 from rag_answer import rag_answer
@@ -30,6 +38,7 @@ from rag_answer import rag_answer
 
 TEST_QUESTIONS_PATH = Path(__file__).parent / "data" / "test_questions.json"
 RESULTS_DIR = Path(__file__).parent / "results"
+EVAL_SCORECARD_CSV = Path(__file__).parent / "eval_scorecard.csv"
 
 # Cấu hình baseline (Sprint 2)
 BASELINE_CONFIG = {
@@ -40,14 +49,13 @@ BASELINE_CONFIG = {
     "label": "baseline_dense",
 }
 
-# Cấu hình variant (Sprint 3 — điều chỉnh theo lựa chọn của nhóm)
-# TODO Sprint 4: Cập nhật VARIANT_CONFIG theo variant nhóm đã implement
+# Variant (Sprint 3): chỉ đổi MỘT biến so với baseline — hybrid retrieval, không bật rerank
 VARIANT_CONFIG = {
-    "retrieval_mode": "hybrid",   # Hoặc "dense" nếu chỉ đổi rerank
+    "retrieval_mode": "hybrid",
     "top_k_search": 10,
     "top_k_select": 3,
-    "use_rerank": True,           # Hoặc False nếu variant là hybrid không rerank
-    "label": "variant_hybrid_rerank",
+    "use_rerank": False,
+    "label": "variant_hybrid",
 }
 
 
@@ -55,6 +63,11 @@ VARIANT_CONFIG = {
 # SCORING FUNCTIONS
 # 4 metrics từ slide: Faithfulness, Answer Relevance, Context Recall, Completeness
 # =============================================================================
+
+def _tokenize_vn(s: str) -> List[str]:
+    s = s.lower()
+    return [t for t in re.split(r"[^\w]+", s) if len(t) > 2]
+
 
 def score_faithfulness(
     answer: str,
@@ -88,12 +101,29 @@ def score_faithfulness(
 
     Trả về dict với: score (1-5) và notes (lý do)
     """
-    # TODO Sprint 4: Implement scoring
-    # Tạm thời trả về None (yêu cầu chấm thủ công)
-    return {
-        "score": None,
-        "notes": "TODO: Chấm thủ công hoặc implement LLM-as-Judge",
-    }
+    abstain = "không đủ dữ liệu" in answer.lower()
+    if not chunks_used:
+        sc = 5 if abstain else 1
+        return {"score": sc, "notes": "Abstain without context" if abstain else "No chunks but answered"}
+
+    ctx = " ".join(c.get("text", "") for c in chunks_used).lower()
+    aw = _tokenize_vn(answer)
+    if not aw:
+        return {"score": 3, "notes": "Empty answer tokens"}
+
+    hits = sum(1 for w in aw if w in ctx)
+    ratio = hits / len(aw)
+    if ratio >= 0.85:
+        sc = 5
+    elif ratio >= 0.65:
+        sc = 4
+    elif ratio >= 0.45:
+        sc = 3
+    elif ratio >= 0.25:
+        sc = 2
+    else:
+        sc = 1
+    return {"score": sc, "notes": f"Lexical grounding ~{ratio:.0%} ({hits}/{len(aw)} tokens)"}
 
 
 def score_answer_relevance(
@@ -113,10 +143,22 @@ def score_answer_relevance(
 
     TODO Sprint 4: Implement tương tự score_faithfulness
     """
-    return {
-        "score": None,
-        "notes": "TODO: Implement score_answer_relevance",
-    }
+    qw = set(_tokenize_vn(query))
+    aw = set(_tokenize_vn(answer))
+    if not qw:
+        return {"score": 3, "notes": "Empty query tokens"}
+    overlap = len(qw & aw) / len(qw)
+    if overlap >= 0.35:
+        sc = 5
+    elif overlap >= 0.25:
+        sc = 4
+    elif overlap >= 0.15:
+        sc = 3
+    elif overlap >= 0.08:
+        sc = 2
+    else:
+        sc = 1
+    return {"score": sc, "notes": f"Query term overlap ~{overlap:.0%}"}
 
 
 def score_context_recall(
@@ -198,10 +240,25 @@ def score_completeness(
          Rate completeness 1-5. Are all key points covered?
          Output: {'score': int, 'missing_points': [str]}"
     """
-    return {
-        "score": None,
-        "notes": "TODO: Implement score_completeness (so sánh với expected_answer)",
-    }
+    if not expected_answer.strip():
+        return {"score": None, "notes": "No expected_answer"}
+    ew = _tokenize_vn(expected_answer)
+    aw = set(_tokenize_vn(answer))
+    if not ew:
+        return {"score": 3, "notes": "Empty expected"}
+    hits = sum(1 for w in ew if w in aw)
+    ratio = hits / len(ew)
+    if ratio >= 0.55:
+        sc = 5
+    elif ratio >= 0.4:
+        sc = 4
+    elif ratio >= 0.28:
+        sc = 3
+    elif ratio >= 0.15:
+        sc = 2
+    else:
+        sc = 1
+    return {"score": sc, "notes": f"Expected-key coverage ~{ratio:.0%} ({hits}/{len(ew)})"}
 
 
 # =============================================================================
@@ -308,7 +365,10 @@ def run_scorecard(
     for metric in ["faithfulness", "relevance", "context_recall", "completeness"]:
         scores = [r[metric] for r in results if r[metric] is not None]
         avg = sum(scores) / len(scores) if scores else None
-        print(f"\nAverage {metric}: {avg:.2f}" if avg else f"\nAverage {metric}: N/A (chưa chấm)")
+        if avg is not None:
+            print(f"\nAverage {metric}: {avg:.2f}")
+        else:
+            print(f"\nAverage {metric}: N/A (chưa chấm)")
 
     return results
 
@@ -354,11 +414,11 @@ def compare_ab(
 
         b_avg = sum(b_scores) / len(b_scores) if b_scores else None
         v_avg = sum(v_scores) / len(v_scores) if v_scores else None
-        delta = (v_avg - b_avg) if (b_avg and v_avg) else None
+        delta = (v_avg - b_avg) if (b_avg is not None and v_avg is not None) else None
 
         b_str = f"{b_avg:.2f}" if b_avg else "N/A"
         v_str = f"{v_avg:.2f}" if v_avg else "N/A"
-        d_str = f"{delta:+.2f}" if delta else "N/A"
+        d_str = f"{delta:+.2f}" if delta is not None else "N/A"
 
         print(f"{metric:<20} {b_str:>10} {v_str:>10} {d_str:>8}")
 
@@ -465,9 +525,9 @@ if __name__ == "__main__":
         print("Không tìm thấy file test_questions.json!")
         test_questions = []
 
-    # --- Chạy Baseline ---
+    baseline_results: List[Dict[str, Any]] = []
     print("\n--- Chạy Baseline ---")
-    print("Lưu ý: Cần hoàn thành Sprint 2 trước khi chạy scorecard!")
+    print("Lưu ý: Cần index (python index.py --build) và API LLM để chấm điểm đầy đủ.")
     try:
         baseline_results = run_scorecard(
             config=BASELINE_CONFIG,
@@ -475,36 +535,53 @@ if __name__ == "__main__":
             verbose=True,
         )
 
-        # Save scorecard
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)
         baseline_md = generate_scorecard_summary(baseline_results, "baseline_dense")
         scorecard_path = RESULTS_DIR / "scorecard_baseline.md"
         scorecard_path.write_text(baseline_md, encoding="utf-8")
         print(f"\nScorecard lưu tại: {scorecard_path}")
 
-    except NotImplementedError:
-        print("Pipeline chưa implement. Hoàn thành Sprint 2 trước.")
+    except Exception as e:
+        print(f"Baseline scorecard lỗi: {e}")
         baseline_results = []
 
-    # --- Chạy Variant (sau khi Sprint 3 hoàn thành) ---
-    # TODO Sprint 4: Uncomment sau khi implement variant trong rag_answer.py
-    # print("\n--- Chạy Variant ---")
-    # variant_results = run_scorecard(
-    #     config=VARIANT_CONFIG,
-    #     test_questions=test_questions,
-    #     verbose=True,
-    # )
-    # variant_md = generate_scorecard_summary(variant_results, VARIANT_CONFIG["label"])
-    # (RESULTS_DIR / "scorecard_variant.md").write_text(variant_md, encoding="utf-8")
+    variant_results: List[Dict[str, Any]] = []
+    print("\n--- Chạy Variant ---")
+    try:
+        variant_results = run_scorecard(
+            config=VARIANT_CONFIG,
+            test_questions=test_questions,
+            verbose=True,
+        )
+        variant_md = generate_scorecard_summary(variant_results, VARIANT_CONFIG["label"])
+        (RESULTS_DIR / "scorecard_variant.md").write_text(variant_md, encoding="utf-8")
+        print(f"\nScorecard variant lưu tại: {RESULTS_DIR / 'scorecard_variant.md'}")
+    except Exception as e:
+        print(f"Variant scorecard lỗi: {e}")
+        variant_results = []
 
-    # --- A/B Comparison ---
-    # TODO Sprint 4: Uncomment sau khi có cả baseline và variant
-    # if baseline_results and variant_results:
-    #     compare_ab(
-    #         baseline_results,
-    #         variant_results,
-    #         output_csv="ab_comparison.csv"
-    #     )
+    if baseline_results and variant_results:
+        compare_ab(
+            baseline_results,
+            variant_results,
+            output_csv="ab_comparison.csv",
+        )
+        combined = []
+        for r in baseline_results:
+            row = dict(r)
+            row["run"] = "baseline"
+            combined.append(row)
+        for r in variant_results:
+            row = dict(r)
+            row["run"] = "variant"
+            combined.append(row)
+        if combined:
+            RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+            with open(EVAL_SCORECARD_CSV, "w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=combined[0].keys())
+                writer.writeheader()
+                writer.writerows(combined)
+            print(f"\nĐã ghi: {EVAL_SCORECARD_CSV}")
 
     print("\n\nViệc cần làm Sprint 4:")
     print("  1. Hoàn thành Sprint 2 + 3 trước")
