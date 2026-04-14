@@ -1,0 +1,308 @@
+{
+  "task": "Store credit khi hoàn tiền có giá trị bao nhiêu so với tiền gốc?",
+  "route_reason": "policy_tool_worker | task mentions store credit / 110% (policy fact) | MCP: search_kb for evidence (not direct Chroma in policy worker)",
+  "risk_high": false,
+  "needs_tool": true,
+  "hitl_triggered": true,
+  "retrieved_chunks": [
+    {
+      "text": "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
+      "source": "refund-v4.pdf",
+      "score": 0.1039,
+      "metadata": {
+        "effective_date": "2026-02-01",
+        "section": "Điều 5: Hình thức hoàn tiền",
+        "access": "internal",
+        "department": "CS",
+        "source": "policy/refund-v4.pdf"
+      }
+    },
+    {
+      "text": "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
+      "source": "refund-v4.pdf",
+      "score": 0.0835,
+      "metadata": {
+        "source": "policy/refund-v4.pdf",
+        "section": "Điều 3: Điều kiện áp dụng và ngoại lệ",
+        "effective_date": "2026-02-01",
+        "access": "internal",
+        "department": "CS"
+      }
+    },
+    {
+      "text": "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.0706,
+      "metadata": {
+        "source": "support/sla-p1-2026.pdf",
+        "access": "internal",
+        "effective_date": "2026-01-15",
+        "section": "Phần 2: SLA theo mức độ ưu tiên",
+        "department": "IT"
+      }
+    },
+    {
+      "text": "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+      "source": "access-control-sop.md",
+      "score": 0.0636,
+      "metadata": {
+        "access": "internal",
+        "department": "IT Security",
+        "source": "it/access-control-sop.md",
+        "section": "Section 4: Escalation khi cần thay đổi quyền hệ thống",
+        "effective_date": "2026-01-01"
+      }
+    },
+    {
+      "text": "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
+      "source": "access-control-sop.md",
+      "score": 0.0515,
+      "metadata": {
+        "effective_date": "2026-01-01",
+        "access": "internal",
+        "source": "it/access-control-sop.md",
+        "section": "Section 1: Phạm vi và mục đích",
+        "department": "IT Security"
+      }
+    },
+    {
+      "text": "IT Security thực hiện access review mỗi 6 tháng.\nMọi bất thường phải được báo cáo lên CISO trong vòng 24 giờ.",
+      "source": "access-control-sop.md",
+      "score": 0.0514,
+      "metadata": {
+        "effective_date": "2026-01-01",
+        "section": "Section 6: Audit và review định kỳ",
+        "source": "it/access-control-sop.md",
+        "department": "IT Security",
+        "access": "internal"
+      }
+    },
+    {
+      "text": "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.044,
+      "metadata": {
+        "section": "Phần 3: Quy trình xử lý sự cố P1",
+        "source": "support/sla-p1-2026.pdf",
+        "department": "IT",
+        "effective_date": "2026-01-15",
+        "access": "internal"
+      }
+    },
+    {
+      "text": "3.1 Điều kiện làm thêm:\nLàm thêm giờ phải được Line Manager phê duyệt trước bằng văn bản.\n\n3.2 Hệ số lương làm thêm:\n- Ngày thường: 150% lương giờ tiêu chuẩn.\n- Ngày cuối tuần: 200% lương giờ tiêu chuẩn.\n- Ngày lễ: 300% lương giờ tiêu chuẩn.",
+      "source": "leave-policy-2026.pdf",
+      "score": 0.0399,
+      "metadata": {
+        "department": "HR",
+        "section": "Phần 3: Chính sách làm thêm giờ",
+        "source": "hr/leave-policy-2026.pdf",
+        "access": "internal",
+        "effective_date": "2026-01-01"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "access-control-sop.md",
+    "leave-policy-2026.pdf",
+    "sla-p1-2026.pdf",
+    "refund-v4.pdf"
+  ],
+  "policy_result": {
+    "policy_applies": false,
+    "policy_name": "refund_policy_v4",
+    "exceptions_found": [
+      {
+        "type": "flash_sale_exception",
+        "rule": "Đơn hàng Flash Sale không được hoàn tiền (Điều 3, chính sách v4).",
+        "source": "policy_refund_v4.txt"
+      }
+    ],
+    "source": [
+      "access-control-sop.md",
+      "leave-policy-2026.pdf",
+      "sla-p1-2026.pdf",
+      "refund-v4.pdf"
+    ],
+    "policy_version_note": "",
+    "explanation": "Analyzed via rule-based policy check. TODO: upgrade to LLM-based analysis."
+  },
+  "mcp_tools_used": [
+    {
+      "tool": "search_kb",
+      "input": {
+        "query": "Store credit khi hoàn tiền có giá trị bao nhiêu so với tiền gốc?",
+        "top_k": 8
+      },
+      "output": {
+        "chunks": [
+          {
+            "text": "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
+            "source": "refund-v4.pdf",
+            "score": 0.1039,
+            "metadata": {
+              "effective_date": "2026-02-01",
+              "section": "Điều 5: Hình thức hoàn tiền",
+              "access": "internal",
+              "department": "CS",
+              "source": "policy/refund-v4.pdf"
+            }
+          },
+          {
+            "text": "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
+            "source": "refund-v4.pdf",
+            "score": 0.0835,
+            "metadata": {
+              "source": "policy/refund-v4.pdf",
+              "section": "Điều 3: Điều kiện áp dụng và ngoại lệ",
+              "effective_date": "2026-02-01",
+              "access": "internal",
+              "department": "CS"
+            }
+          },
+          {
+            "text": "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+            "source": "sla-p1-2026.pdf",
+            "score": 0.0706,
+            "metadata": {
+              "source": "support/sla-p1-2026.pdf",
+              "access": "internal",
+              "effective_date": "2026-01-15",
+              "section": "Phần 2: SLA theo mức độ ưu tiên",
+              "department": "IT"
+            }
+          },
+          {
+            "text": "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+            "source": "access-control-sop.md",
+            "score": 0.0636,
+            "metadata": {
+              "access": "internal",
+              "department": "IT Security",
+              "source": "it/access-control-sop.md",
+              "section": "Section 4: Escalation khi cần thay đổi quyền hệ thống",
+              "effective_date": "2026-01-01"
+            }
+          },
+          {
+            "text": "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
+            "source": "access-control-sop.md",
+            "score": 0.0515,
+            "metadata": {
+              "effective_date": "2026-01-01",
+              "access": "internal",
+              "source": "it/access-control-sop.md",
+              "section": "Section 1: Phạm vi và mục đích",
+              "department": "IT Security"
+            }
+          },
+          {
+            "text": "IT Security thực hiện access review mỗi 6 tháng.\nMọi bất thường phải được báo cáo lên CISO trong vòng 24 giờ.",
+            "source": "access-control-sop.md",
+            "score": 0.0514,
+            "metadata": {
+              "effective_date": "2026-01-01",
+              "section": "Section 6: Audit và review định kỳ",
+              "source": "it/access-control-sop.md",
+              "department": "IT Security",
+              "access": "internal"
+            }
+          },
+          {
+            "text": "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
+            "source": "sla-p1-2026.pdf",
+            "score": 0.044,
+            "metadata": {
+              "section": "Phần 3: Quy trình xử lý sự cố P1",
+              "source": "support/sla-p1-2026.pdf",
+              "department": "IT",
+              "effective_date": "2026-01-15",
+              "access": "internal"
+            }
+          },
+          {
+            "text": "3.1 Điều kiện làm thêm:\nLàm thêm giờ phải được Line Manager phê duyệt trước bằng văn bản.\n\n3.2 Hệ số lương làm thêm:\n- Ngày thường: 150% lương giờ tiêu chuẩn.\n- Ngày cuối tuần: 200% lương giờ tiêu chuẩn.\n- Ngày lễ: 300% lương giờ tiêu chuẩn.",
+            "source": "leave-policy-2026.pdf",
+            "score": 0.0399,
+            "metadata": {
+              "department": "HR",
+              "section": "Phần 3: Chính sách làm thêm giờ",
+              "source": "hr/leave-policy-2026.pdf",
+              "access": "internal",
+              "effective_date": "2026-01-01"
+            }
+          }
+        ],
+        "sources": [
+          "access-control-sop.md",
+          "leave-policy-2026.pdf",
+          "sla-p1-2026.pdf",
+          "refund-v4.pdf"
+        ],
+        "total_found": 8
+      },
+      "error": null,
+      "timestamp": "2026-04-14T12:37:10.446963"
+    }
+  ],
+  "final_answer": "Store credit khi hoàn tiền có giá trị 110% so với số tiền hoàn [1].",
+  "sources": [
+    "access-control-sop.md",
+    "leave-policy-2026.pdf",
+    "sla-p1-2026.pdf",
+    "refund-v4.pdf"
+  ],
+  "confidence": 0.25,
+  "history": [
+    "[supervisor] received task: Store credit khi hoàn tiền có giá trị bao nhiêu so với tiền gốc?",
+    "[supervisor] route=policy_tool_worker needs_tool=True reason=policy_tool_worker | task mentions store credit / 110% (policy fact)",
+    "[policy_tool_worker] MCP search_kb top_k=8 (policy path — no direct Chroma)",
+    "[policy_tool_worker] policy_applies=False, exceptions=1",
+    "[synthesis_worker] confidence=0.25 sources=['access-control-sop.md', 'leave-policy-2026.pdf', 'sla-p1-2026.pdf', 'refund-v4.pdf']",
+    "[graph] completed in 3466ms"
+  ],
+  "workers_called": [
+    "policy_tool_worker",
+    "synthesis_worker"
+  ],
+  "worker_io_logs": [
+    {
+      "worker": "policy_tool_worker",
+      "input": {
+        "task": "Store credit khi hoàn tiền có giá trị bao nhiêu so với tiền gốc?",
+        "chunks_count": 0,
+        "needs_tool": true
+      },
+      "output": {
+        "policy_applies": false,
+        "exceptions_count": 1,
+        "mcp_calls": 1
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Store credit khi hoàn tiền có giá trị bao nhiêu so với tiền gốc?",
+        "chunks_count": 8,
+        "has_policy": true
+      },
+      "output": {
+        "answer_length": 67,
+        "sources": [
+          "access-control-sop.md",
+          "leave-policy-2026.pdf",
+          "sla-p1-2026.pdf",
+          "refund-v4.pdf"
+        ],
+        "confidence": 0.25
+      },
+      "error": null
+    }
+  ],
+  "supervisor_route": "policy_tool_worker",
+  "latency_ms": 3466,
+  "run_id": "run_20260414_123710_edf9db1d",
+  "retrieval_top_k": 8,
+  "question_id": "q10"
+}

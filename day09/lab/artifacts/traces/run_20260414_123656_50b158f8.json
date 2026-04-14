@@ -1,0 +1,139 @@
+{
+  "task": "Nhân viên được làm remote tối đa mấy ngày mỗi tuần?",
+  "route_reason": "default → retrieval_worker (general KB)",
+  "risk_high": false,
+  "needs_tool": false,
+  "hitl_triggered": true,
+  "retrieved_chunks": [
+    {
+      "text": "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+      "source": "access-control-sop.md",
+      "score": 0.1643,
+      "metadata": {
+        "source": "it/access-control-sop.md",
+        "section": "Section 4: Escalation khi cần thay đổi quyền hệ thống",
+        "access": "internal",
+        "effective_date": "2026-01-01",
+        "department": "IT Security"
+      }
+    },
+    {
+      "text": "Ticket system: Jira (project IT-SUPPORT)\nSlack channel: #incident-p1, #incident-p2\nPagerDuty: Tự động nhắn on-call khi P1 ticket mới\nHotline on-call: ext. 9999 (24/7)",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.0819,
+      "metadata": {
+        "access": "internal",
+        "section": "Phần 4: Công cụ và kênh liên lạc",
+        "effective_date": "2026-01-15",
+        "source": "support/sla-p1-2026.pdf",
+        "department": "IT"
+      }
+    },
+    {
+      "text": "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
+      "source": "refund-v4.pdf",
+      "score": 0.0804,
+      "metadata": {
+        "access": "internal",
+        "section": "Điều 5: Hình thức hoàn tiền",
+        "department": "CS",
+        "effective_date": "2026-02-01",
+        "source": "policy/refund-v4.pdf"
+      }
+    },
+    {
+      "text": "Email: hr@company.internal\nHotline: ext. 2000\nHR Portal: https://hr.company.internal\nGiờ làm việc: Thứ 2 - Thứ 6, 8:30 - 17:30",
+      "source": "leave-policy-2026.pdf",
+      "score": 0.0717,
+      "metadata": {
+        "department": "HR",
+        "access": "internal",
+        "effective_date": "2026-01-01",
+        "source": "hr/leave-policy-2026.pdf",
+        "section": "Phần 5: Liên hệ HR"
+      }
+    },
+    {
+      "text": "P1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ.",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.0563,
+      "metadata": {
+        "source": "support/sla-p1-2026.pdf",
+        "access": "internal",
+        "effective_date": "2026-01-15",
+        "section": "Phần 1: Định nghĩa mức độ ưu tiên",
+        "department": "IT"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "access-control-sop.md",
+    "leave-policy-2026.pdf",
+    "sla-p1-2026.pdf",
+    "refund-v4.pdf"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Không đủ thông tin trong tài liệu nội bộ đã cung cấp.",
+  "sources": [
+    "access-control-sop.md",
+    "leave-policy-2026.pdf",
+    "sla-p1-2026.pdf",
+    "refund-v4.pdf"
+  ],
+  "confidence": 0.35,
+  "history": [
+    "[supervisor] received task: Nhân viên được làm remote tối đa mấy ngày mỗi tuần?",
+    "[supervisor] route=retrieval_worker needs_tool=False reason=default → retrieval_worker (general KB)",
+    "[retrieval_worker] retrieved 5 chunks from ['access-control-sop.md', 'leave-policy-2026.pdf', 'sla-p1-2026.pdf', 'refund-v4.pdf']",
+    "[synthesis_worker] confidence=0.35 sources=['access-control-sop.md', 'leave-policy-2026.pdf', 'sla-p1-2026.pdf', 'refund-v4.pdf']",
+    "[graph] completed in 1748ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "Nhân viên được làm remote tối đa mấy ngày mỗi tuần?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "access-control-sop.md",
+          "leave-policy-2026.pdf",
+          "sla-p1-2026.pdf",
+          "refund-v4.pdf"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Nhân viên được làm remote tối đa mấy ngày mỗi tuần?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 53,
+        "sources": [
+          "access-control-sop.md",
+          "leave-policy-2026.pdf",
+          "sla-p1-2026.pdf",
+          "refund-v4.pdf"
+        ],
+        "confidence": 0.35
+      },
+      "error": null
+    }
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 1748,
+  "run_id": "run_20260414_123656_50b158f8",
+  "retrieval_top_k": 5,
+  "question_id": "q05"
+}

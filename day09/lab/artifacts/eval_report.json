@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-04-14T12:39:12.159343",
+  "day08_single_agent": {
+    "source": "day08/lab/results/scorecard_baseline.md + eval run",
+    "total_questions": 15,
+    "avg_faithfulness_5": 3.8,
+    "avg_relevance_5": 3.9,
+    "avg_latency_ms_estimate": 2100,
+    "abstain_rate": "1/15 (q09 insufficient context)",
+    "multi_hop_accuracy": "partial — single RAG pipeline, no explicit routing/trace",
+    "notes": "Day 08 monolithic RAG; khó phân tách lỗi retrieval vs generation."
+  },
+  "day09_multi_agent": {
+    "total_traces": 51,
+    "routing_distribution": {
+      "retrieval_worker": "29/51 (56%)",
+      "policy_tool_worker": "22/51 (43%)"
+    },
+    "avg_confidence": 0.279,
+    "avg_latency_ms": 2936,
+    "mcp_usage_rate": "22/51 (43%)",
+    "hitl_rate": "51/51 (100%)",
+    "top_sources": [
+      [
+        "access-control-sop.md",
+        51
+      ],
+      [
+        "sla-p1-2026.pdf",
+        45
+      ],
+      [
+        "helpdesk-faq.md",
+        39
+      ],
+      [
+        "refund-v4.pdf",
+        38
+      ],
+      [
+        "leave-policy-2026.pdf",
+        32
+      ]
+    ]
+  },
+  "analysis": {
+    "routing_visibility": "Day 09 có route_reason + workers_called trong trace; Day 08 không có.",
+    "latency_delta_ms": 836,
+    "confidence_proxy_delta": -0.481,
+    "debuggability": "Multi-agent: test từng worker + MCP; single-agent: một khối RAG.",
+    "mcp_benefit": "Policy worker gọi search_kb/get_ticket_info qua MCP mock, không hard-code Chroma trong policy_tool."
+  }
+}

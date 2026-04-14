@@ -1,0 +1,134 @@
+{
+  "task": "SLA xử lý ticket P1 là bao lâu?",
+  "route_reason": "task contains P1/SLA/ticket/escalation/incident/err code → retrieval",
+  "risk_high": false,
+  "needs_tool": false,
+  "hitl_triggered": true,
+  "retrieved_chunks": [
+    {
+      "text": "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.1024,
+      "metadata": {
+        "access": "internal",
+        "section": "Phần 2: SLA theo mức độ ưu tiên",
+        "effective_date": "2026-01-15",
+        "department": "IT",
+        "source": "support/sla-p1-2026.pdf"
+      }
+    },
+    {
+      "text": "Level 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy.",
+      "source": "access-control-sop.md",
+      "score": 0.0838,
+      "metadata": {
+        "department": "IT Security",
+        "section": "Section 2: Phân cấp quyền truy cập",
+        "access": "internal",
+        "effective_date": "2026-01-01",
+        "source": "it/access-control-sop.md"
+      }
+    },
+    {
+      "text": "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn.",
+      "source": "helpdesk-faq.md",
+      "score": 0.0584,
+      "metadata": {
+        "section": "Section 1: Tài khoản và mật khẩu",
+        "access": "internal",
+        "department": "IT",
+        "effective_date": "2026-01-20",
+        "source": "support/helpdesk-faq.md"
+      }
+    },
+    {
+      "text": "Q: Phần mềm VPN nào công ty dùng?\nA: Công ty sử dụng Cisco AnyConnect. Download tại https://vpn.company.internal/download.\n\nQ: Tôi bị mất kết nối VPN liên tục, phải làm gì?\nA: Kiểm tra kết nối Internet trước. Nếu vẫn lỗi, tạo ticket P3 với log file VPN đính kèm.\n\nQ: VPN có giới hạn số thiết bị không?\nA: Mỗi tài khoản được kết nối VPN trên tối đa 2 thiết bị cùng lúc.",
+      "source": "helpdesk-faq.md",
+      "score": 0.0579,
+      "metadata": {
+        "access": "internal",
+        "effective_date": "2026-01-20",
+        "source": "support/helpdesk-faq.md",
+        "department": "IT",
+        "section": "Section 2: VPN và kết nối từ xa"
+      }
+    },
+    {
+      "text": "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
+      "source": "helpdesk-faq.md",
+      "score": 0.0487,
+      "metadata": {
+        "department": "IT",
+        "effective_date": "2026-01-20",
+        "access": "internal",
+        "source": "support/helpdesk-faq.md",
+        "section": "Section 4: Thiết bị và phần cứng"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "access-control-sop.md",
+    "sla-p1-2026.pdf",
+    "helpdesk-faq.md"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "SLA xử lý ticket P1 là 4 giờ cho việc khắc phục (resolution) và phản hồi ban đầu trong 15 phút kể từ khi ticket được tạo [1].",
+  "sources": [
+    "access-control-sop.md",
+    "sla-p1-2026.pdf",
+    "helpdesk-faq.md"
+  ],
+  "confidence": 0.25,
+  "history": [
+    "[supervisor] received task: SLA xử lý ticket P1 là bao lâu?",
+    "[supervisor] route=retrieval_worker needs_tool=False reason=task contains P1/SLA/ticket/escalation/incident/err code → retrieval",
+    "[retrieval_worker] retrieved 5 chunks from ['access-control-sop.md', 'sla-p1-2026.pdf', 'helpdesk-faq.md']",
+    "[synthesis_worker] confidence=0.25 sources=['access-control-sop.md', 'sla-p1-2026.pdf', 'helpdesk-faq.md']",
+    "[graph] completed in 15234ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "SLA xử lý ticket P1 là bao lâu?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "access-control-sop.md",
+          "sla-p1-2026.pdf",
+          "helpdesk-faq.md"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "SLA xử lý ticket P1 là bao lâu?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 125,
+        "sources": [
+          "access-control-sop.md",
+          "sla-p1-2026.pdf",
+          "helpdesk-faq.md"
+        ],
+        "confidence": 0.25
+      },
+      "error": null
+    }
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 15234,
+  "run_id": "run_20260414_123534_08778a9e",
+  "retrieval_top_k": 5
+}

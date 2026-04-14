@@ -1,0 +1,143 @@
+{
+  "task": "Ticket P1 được tạo lúc 22:47. Ai sẽ nhận thông báo đầu tiên và qua kênh nào? Escalation xảy ra lúc mấy giờ?",
+  "route_reason": "task contains P1/SLA/ticket/escalation/incident/err code → retrieval",
+  "risk_high": false,
+  "needs_tool": false,
+  "hitl_triggered": true,
+  "retrieved_chunks": [
+    {
+      "text": "Hotline: ext. 9000 (8:00 - 18:00, Thứ 2 - Thứ 6)\nEmail: helpdesk@company.internal\nJira: project IT-SUPPORT\nSlack: #it-helpdesk\nEmergency (ngoài giờ): ext. 9999",
+      "source": "helpdesk-faq.md",
+      "score": 0.1018,
+      "metadata": {
+        "access": "internal",
+        "effective_date": "2026-01-20",
+        "section": "Section 6: Liên hệ IT Helpdesk",
+        "source": "support/helpdesk-faq.md",
+        "department": "IT"
+      }
+    },
+    {
+      "text": "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
+      "source": "leave-policy-2026.pdf",
+      "score": 0.0965,
+      "metadata": {
+        "source": "hr/leave-policy-2026.pdf",
+        "effective_date": "2026-01-01",
+        "department": "HR",
+        "access": "internal",
+        "section": "Phần 2: Quy trình xin nghỉ phép"
+      }
+    },
+    {
+      "text": "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.0827,
+      "metadata": {
+        "department": "IT",
+        "access": "internal",
+        "source": "support/sla-p1-2026.pdf",
+        "effective_date": "2026-01-15",
+        "section": "Phần 3: Quy trình xử lý sự cố P1"
+      }
+    },
+    {
+      "text": "IT Security thực hiện access review mỗi 6 tháng.\nMọi bất thường phải được báo cáo lên CISO trong vòng 24 giờ.",
+      "source": "access-control-sop.md",
+      "score": 0.0496,
+      "metadata": {
+        "source": "it/access-control-sop.md",
+        "department": "IT Security",
+        "effective_date": "2026-01-01",
+        "section": "Section 6: Audit và review định kỳ",
+        "access": "internal"
+      }
+    },
+    {
+      "text": "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
+      "source": "refund-v4.pdf",
+      "score": 0.0479,
+      "metadata": {
+        "section": "Điều 3: Điều kiện áp dụng và ngoại lệ",
+        "source": "policy/refund-v4.pdf",
+        "access": "internal",
+        "effective_date": "2026-02-01",
+        "department": "CS"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "sla-p1-2026.pdf",
+    "leave-policy-2026.pdf",
+    "helpdesk-faq.md",
+    "refund-v4.pdf",
+    "access-control-sop.md"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Theo [1] trong context (SKIP_LLM=1), vui lòng xem các đoạn đã cung cấp.",
+  "sources": [
+    "sla-p1-2026.pdf",
+    "leave-policy-2026.pdf",
+    "helpdesk-faq.md",
+    "refund-v4.pdf",
+    "access-control-sop.md"
+  ],
+  "confidence": 0.25,
+  "history": [
+    "[supervisor] received task: Ticket P1 được tạo lúc 22:47. Ai sẽ nhận thông báo đầu tiên và qua kênh nào? Escalation xảy ra lúc mấy giờ?",
+    "[supervisor] route=retrieval_worker needs_tool=False reason=task contains P1/SLA/ticket/escalation/incident/err code → retrieval",
+    "[retrieval_worker] retrieved 5 chunks from ['sla-p1-2026.pdf', 'leave-policy-2026.pdf', 'helpdesk-faq.md', 'refund-v4.pdf', 'access-control-sop.md']",
+    "[synthesis_worker] confidence=0.25 sources=['sla-p1-2026.pdf', 'leave-policy-2026.pdf', 'helpdesk-faq.md', 'refund-v4.pdf', 'access-control-sop.md']",
+    "[graph] completed in 6ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "Ticket P1 được tạo lúc 22:47. Ai sẽ nhận thông báo đầu tiên và qua kênh nào? Escalation xảy ra lúc mấy giờ?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "sla-p1-2026.pdf",
+          "leave-policy-2026.pdf",
+          "helpdesk-faq.md",
+          "refund-v4.pdf",
+          "access-control-sop.md"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Ticket P1 được tạo lúc 22:47. Ai sẽ nhận thông báo đầu tiên và qua kênh nào? Escalation xảy ra lúc mấy giờ?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 71,
+        "sources": [
+          "sla-p1-2026.pdf",
+          "leave-policy-2026.pdf",
+          "helpdesk-faq.md",
+          "refund-v4.pdf",
+          "access-control-sop.md"
+        ],
+        "confidence": 0.25
+      },
+      "error": null
+    }
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 6,
+  "run_id": "run_20260414_120624_925d2ddc",
+  "retrieval_top_k": 5,
+  "question_id": "q11"
+}

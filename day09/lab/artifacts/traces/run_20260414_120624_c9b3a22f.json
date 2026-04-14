@@ -1,0 +1,139 @@
+{
+  "task": "Quy trình xử lý sự cố P1 gồm mấy bước và bước đầu tiên là gì?",
+  "route_reason": "task contains P1/SLA/ticket/escalation/incident/err code → retrieval",
+  "risk_high": false,
+  "needs_tool": false,
+  "hitl_triggered": true,
+  "retrieved_chunks": [
+    {
+      "text": "Q: Phần mềm VPN nào công ty dùng?\nA: Công ty sử dụng Cisco AnyConnect. Download tại https://vpn.company.internal/download.\n\nQ: Tôi bị mất kết nối VPN liên tục, phải làm gì?\nA: Kiểm tra kết nối Internet trước. Nếu vẫn lỗi, tạo ticket P3 với log file VPN đính kèm.\n\nQ: VPN có giới hạn số thiết bị không?\nA: Mỗi tài khoản được kết nối VPN trên tối đa 2 thiết bị cùng lúc.",
+      "source": "helpdesk-faq.md",
+      "score": 0.0845,
+      "metadata": {
+        "source": "support/helpdesk-faq.md",
+        "department": "IT",
+        "effective_date": "2026-01-20",
+        "access": "internal",
+        "section": "Section 2: VPN và kết nối từ xa"
+      }
+    },
+    {
+      "text": "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.0826,
+      "metadata": {
+        "effective_date": "2026-01-15",
+        "section": "Phần 2: SLA theo mức độ ưu tiên",
+        "department": "IT",
+        "source": "support/sla-p1-2026.pdf",
+        "access": "internal"
+      }
+    },
+    {
+      "text": "3.1 Điều kiện làm thêm:\nLàm thêm giờ phải được Line Manager phê duyệt trước bằng văn bản.\n\n3.2 Hệ số lương làm thêm:\n- Ngày thường: 150% lương giờ tiêu chuẩn.\n- Ngày cuối tuần: 200% lương giờ tiêu chuẩn.\n- Ngày lễ: 300% lương giờ tiêu chuẩn.",
+      "source": "leave-policy-2026.pdf",
+      "score": 0.0732,
+      "metadata": {
+        "section": "Phần 3: Chính sách làm thêm giờ",
+        "access": "internal",
+        "source": "hr/leave-policy-2026.pdf",
+        "department": "HR",
+        "effective_date": "2026-01-01"
+      }
+    },
+    {
+      "text": "Quyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc.",
+      "source": "access-control-sop.md",
+      "score": 0.0689,
+      "metadata": {
+        "effective_date": "2026-01-01",
+        "department": "IT Security",
+        "access": "internal",
+        "section": "Section 5: Thu hồi quyền truy cập",
+        "source": "it/access-control-sop.md"
+      }
+    },
+    {
+      "text": "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+      "source": "access-control-sop.md",
+      "score": 0.0637,
+      "metadata": {
+        "effective_date": "2026-01-01",
+        "department": "IT Security",
+        "access": "internal",
+        "section": "Section 4: Escalation khi cần thay đổi quyền hệ thống",
+        "source": "it/access-control-sop.md"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "helpdesk-faq.md",
+    "leave-policy-2026.pdf",
+    "sla-p1-2026.pdf",
+    "access-control-sop.md"
+  ],
+  "policy_result": {},
+  "mcp_tools_used": [],
+  "final_answer": "Theo [1] trong context (SKIP_LLM=1), vui lòng xem các đoạn đã cung cấp.",
+  "sources": [
+    "helpdesk-faq.md",
+    "leave-policy-2026.pdf",
+    "sla-p1-2026.pdf",
+    "access-control-sop.md"
+  ],
+  "confidence": 0.25,
+  "history": [
+    "[supervisor] received task: Quy trình xử lý sự cố P1 gồm mấy bước và bước đầu tiên là gì?",
+    "[supervisor] route=retrieval_worker needs_tool=False reason=task contains P1/SLA/ticket/escalation/incident/err code → retrieval",
+    "[retrieval_worker] retrieved 5 chunks from ['helpdesk-faq.md', 'leave-policy-2026.pdf', 'sla-p1-2026.pdf', 'access-control-sop.md']",
+    "[synthesis_worker] confidence=0.25 sources=['helpdesk-faq.md', 'leave-policy-2026.pdf', 'sla-p1-2026.pdf', 'access-control-sop.md']",
+    "[graph] completed in 6ms"
+  ],
+  "workers_called": [
+    "retrieval_worker",
+    "synthesis_worker"
+  ],
+  "worker_io_logs": [
+    {
+      "worker": "retrieval_worker",
+      "input": {
+        "task": "Quy trình xử lý sự cố P1 gồm mấy bước và bước đầu tiên là gì?",
+        "top_k": 5
+      },
+      "output": {
+        "chunks_count": 5,
+        "sources": [
+          "helpdesk-faq.md",
+          "leave-policy-2026.pdf",
+          "sla-p1-2026.pdf",
+          "access-control-sop.md"
+        ]
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Quy trình xử lý sự cố P1 gồm mấy bước và bước đầu tiên là gì?",
+        "chunks_count": 5,
+        "has_policy": false
+      },
+      "output": {
+        "answer_length": 71,
+        "sources": [
+          "helpdesk-faq.md",
+          "leave-policy-2026.pdf",
+          "sla-p1-2026.pdf",
+          "access-control-sop.md"
+        ],
+        "confidence": 0.25
+      },
+      "error": null
+    }
+  ],
+  "supervisor_route": "retrieval_worker",
+  "latency_ms": 6,
+  "run_id": "run_20260414_120624_c9b3a22f",
+  "retrieval_top_k": 5,
+  "question_id": "q08"
+}

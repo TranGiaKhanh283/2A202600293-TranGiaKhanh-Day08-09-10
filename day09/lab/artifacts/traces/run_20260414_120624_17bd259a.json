@@ -1,0 +1,307 @@
+{
+  "task": "Ai phải phê duyệt để cấp quyền Level 3?",
+  "route_reason": "policy_tool_worker | Level 3 access / approval policy | MCP: search_kb for evidence (not direct Chroma in policy worker)",
+  "risk_high": false,
+  "needs_tool": true,
+  "hitl_triggered": true,
+  "retrieved_chunks": [
+    {
+      "text": "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
+      "source": "access-control-sop.md",
+      "score": 0.1004,
+      "metadata": {
+        "effective_date": "2026-01-01",
+        "department": "IT Security",
+        "source": "it/access-control-sop.md",
+        "access": "internal",
+        "section": "Section 3: Quy trình yêu cầu cấp quyền"
+      }
+    },
+    {
+      "text": "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team.",
+      "source": "leave-policy-2026.pdf",
+      "score": 0.0832,
+      "metadata": {
+        "department": "HR",
+        "effective_date": "2026-01-01",
+        "section": "Phần 4: Remote work policy",
+        "access": "internal",
+        "source": "hr/leave-policy-2026.pdf"
+      }
+    },
+    {
+      "text": "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.0818,
+      "metadata": {
+        "effective_date": "2026-01-15",
+        "source": "support/sla-p1-2026.pdf",
+        "department": "IT",
+        "section": "Phần 2: SLA theo mức độ ưu tiên",
+        "access": "internal"
+      }
+    },
+    {
+      "text": "Q: Hộp thư đến đầy, phải làm gì?\nA: Xóa email cũ hoặc yêu cầu tăng dung lượng qua ticket IT-ACCESS. Dung lượng tiêu chuẩn là 50GB.\n\nQ: Tôi không nhận được email từ bên ngoài?\nA: Kiểm tra thư mục Spam trước. Nếu vẫn không có, tạo ticket P2 kèm địa chỉ email gửi và thời gian gửi.",
+      "source": "helpdesk-faq.md",
+      "score": 0.0565,
+      "metadata": {
+        "source": "support/helpdesk-faq.md",
+        "access": "internal",
+        "section": "Section 5: Email và lịch",
+        "effective_date": "2026-01-20",
+        "department": "IT"
+      }
+    },
+    {
+      "text": "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
+      "source": "leave-policy-2026.pdf",
+      "score": 0.0555,
+      "metadata": {
+        "source": "hr/leave-policy-2026.pdf",
+        "department": "HR",
+        "effective_date": "2026-01-01",
+        "section": "Phần 2: Quy trình xin nghỉ phép",
+        "access": "internal"
+      }
+    },
+    {
+      "text": "Q: Phần mềm VPN nào công ty dùng?\nA: Công ty sử dụng Cisco AnyConnect. Download tại https://vpn.company.internal/download.\n\nQ: Tôi bị mất kết nối VPN liên tục, phải làm gì?\nA: Kiểm tra kết nối Internet trước. Nếu vẫn lỗi, tạo ticket P3 với log file VPN đính kèm.\n\nQ: VPN có giới hạn số thiết bị không?\nA: Mỗi tài khoản được kết nối VPN trên tối đa 2 thiết bị cùng lúc.",
+      "source": "helpdesk-faq.md",
+      "score": 0.054,
+      "metadata": {
+        "access": "internal",
+        "department": "IT",
+        "effective_date": "2026-01-20",
+        "source": "support/helpdesk-faq.md",
+        "section": "Section 2: VPN và kết nối từ xa"
+      }
+    },
+    {
+      "text": "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3.",
+      "source": "refund-v4.pdf",
+      "score": 0.0329,
+      "metadata": {
+        "section": "Điều 1: Phạm vi áp dụng",
+        "access": "internal",
+        "source": "policy/refund-v4.pdf",
+        "effective_date": "2026-02-01",
+        "department": "CS"
+      }
+    },
+    {
+      "text": "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn.",
+      "source": "helpdesk-faq.md",
+      "score": 0.028,
+      "metadata": {
+        "access": "internal",
+        "department": "IT",
+        "section": "Section 1: Tài khoản và mật khẩu",
+        "effective_date": "2026-01-20",
+        "source": "support/helpdesk-faq.md"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "sla-p1-2026.pdf",
+    "leave-policy-2026.pdf",
+    "helpdesk-faq.md",
+    "refund-v4.pdf",
+    "access-control-sop.md"
+  ],
+  "policy_result": {
+    "policy_applies": true,
+    "policy_name": "refund_policy_v4",
+    "exceptions_found": [],
+    "source": [
+      "sla-p1-2026.pdf",
+      "leave-policy-2026.pdf",
+      "helpdesk-faq.md",
+      "refund-v4.pdf",
+      "access-control-sop.md"
+    ],
+    "policy_version_note": "",
+    "explanation": "Analyzed via rule-based policy check. TODO: upgrade to LLM-based analysis."
+  },
+  "mcp_tools_used": [
+    {
+      "tool": "search_kb",
+      "input": {
+        "query": "Ai phải phê duyệt để cấp quyền Level 3?",
+        "top_k": 8
+      },
+      "output": {
+        "chunks": [
+          {
+            "text": "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
+            "source": "access-control-sop.md",
+            "score": 0.1004,
+            "metadata": {
+              "effective_date": "2026-01-01",
+              "department": "IT Security",
+              "source": "it/access-control-sop.md",
+              "access": "internal",
+              "section": "Section 3: Quy trình yêu cầu cấp quyền"
+            }
+          },
+          {
+            "text": "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team.",
+            "source": "leave-policy-2026.pdf",
+            "score": 0.0832,
+            "metadata": {
+              "department": "HR",
+              "effective_date": "2026-01-01",
+              "section": "Phần 4: Remote work policy",
+              "access": "internal",
+              "source": "hr/leave-policy-2026.pdf"
+            }
+          },
+          {
+            "text": "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+            "source": "sla-p1-2026.pdf",
+            "score": 0.0818,
+            "metadata": {
+              "effective_date": "2026-01-15",
+              "source": "support/sla-p1-2026.pdf",
+              "department": "IT",
+              "section": "Phần 2: SLA theo mức độ ưu tiên",
+              "access": "internal"
+            }
+          },
+          {
+            "text": "Q: Hộp thư đến đầy, phải làm gì?\nA: Xóa email cũ hoặc yêu cầu tăng dung lượng qua ticket IT-ACCESS. Dung lượng tiêu chuẩn là 50GB.\n\nQ: Tôi không nhận được email từ bên ngoài?\nA: Kiểm tra thư mục Spam trước. Nếu vẫn không có, tạo ticket P2 kèm địa chỉ email gửi và thời gian gửi.",
+            "source": "helpdesk-faq.md",
+            "score": 0.0565,
+            "metadata": {
+              "source": "support/helpdesk-faq.md",
+              "access": "internal",
+              "section": "Section 5: Email và lịch",
+              "effective_date": "2026-01-20",
+              "department": "IT"
+            }
+          },
+          {
+            "text": "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
+            "source": "leave-policy-2026.pdf",
+            "score": 0.0555,
+            "metadata": {
+              "source": "hr/leave-policy-2026.pdf",
+              "department": "HR",
+              "effective_date": "2026-01-01",
+              "section": "Phần 2: Quy trình xin nghỉ phép",
+              "access": "internal"
+            }
+          },
+          {
+            "text": "Q: Phần mềm VPN nào công ty dùng?\nA: Công ty sử dụng Cisco AnyConnect. Download tại https://vpn.company.internal/download.\n\nQ: Tôi bị mất kết nối VPN liên tục, phải làm gì?\nA: Kiểm tra kết nối Internet trước. Nếu vẫn lỗi, tạo ticket P3 với log file VPN đính kèm.\n\nQ: VPN có giới hạn số thiết bị không?\nA: Mỗi tài khoản được kết nối VPN trên tối đa 2 thiết bị cùng lúc.",
+            "source": "helpdesk-faq.md",
+            "score": 0.054,
+            "metadata": {
+              "access": "internal",
+              "department": "IT",
+              "effective_date": "2026-01-20",
+              "source": "support/helpdesk-faq.md",
+              "section": "Section 2: VPN và kết nối từ xa"
+            }
+          },
+          {
+            "text": "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3.",
+            "source": "refund-v4.pdf",
+            "score": 0.0329,
+            "metadata": {
+              "section": "Điều 1: Phạm vi áp dụng",
+              "access": "internal",
+              "source": "policy/refund-v4.pdf",
+              "effective_date": "2026-02-01",
+              "department": "CS"
+            }
+          },
+          {
+            "text": "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn.",
+            "source": "helpdesk-faq.md",
+            "score": 0.028,
+            "metadata": {
+              "access": "internal",
+              "department": "IT",
+              "section": "Section 1: Tài khoản và mật khẩu",
+              "effective_date": "2026-01-20",
+              "source": "support/helpdesk-faq.md"
+            }
+          }
+        ],
+        "sources": [
+          "sla-p1-2026.pdf",
+          "leave-policy-2026.pdf",
+          "helpdesk-faq.md",
+          "refund-v4.pdf",
+          "access-control-sop.md"
+        ],
+        "total_found": 8
+      },
+      "error": null,
+      "timestamp": "2026-04-14T12:06:24.628853"
+    }
+  ],
+  "final_answer": "Theo [1] trong context (SKIP_LLM=1), vui lòng xem các đoạn đã cung cấp.",
+  "sources": [
+    "sla-p1-2026.pdf",
+    "leave-policy-2026.pdf",
+    "helpdesk-faq.md",
+    "refund-v4.pdf",
+    "access-control-sop.md"
+  ],
+  "confidence": 0.25,
+  "history": [
+    "[supervisor] received task: Ai phải phê duyệt để cấp quyền Level 3?",
+    "[supervisor] route=policy_tool_worker needs_tool=True reason=policy_tool_worker | Level 3 access / approval policy",
+    "[policy_tool_worker] MCP search_kb top_k=8 (policy path — no direct Chroma)",
+    "[policy_tool_worker] policy_applies=True, exceptions=0",
+    "[synthesis_worker] confidence=0.25 sources=['sla-p1-2026.pdf', 'leave-policy-2026.pdf', 'helpdesk-faq.md', 'refund-v4.pdf', 'access-control-sop.md']",
+    "[graph] completed in 11ms"
+  ],
+  "workers_called": [
+    "policy_tool_worker",
+    "synthesis_worker"
+  ],
+  "worker_io_logs": [
+    {
+      "worker": "policy_tool_worker",
+      "input": {
+        "task": "Ai phải phê duyệt để cấp quyền Level 3?",
+        "chunks_count": 0,
+        "needs_tool": true
+      },
+      "output": {
+        "policy_applies": true,
+        "exceptions_count": 0,
+        "mcp_calls": 1
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Ai phải phê duyệt để cấp quyền Level 3?",
+        "chunks_count": 8,
+        "has_policy": true
+      },
+      "output": {
+        "answer_length": 71,
+        "sources": [
+          "sla-p1-2026.pdf",
+          "leave-policy-2026.pdf",
+          "helpdesk-faq.md",
+          "refund-v4.pdf",
+          "access-control-sop.md"
+        ],
+        "confidence": 0.25
+      },
+      "error": null
+    }
+  ],
+  "supervisor_route": "policy_tool_worker",
+  "latency_ms": 11,
+  "run_id": "run_20260414_120624_17bd259a",
+  "retrieval_top_k": 8,
+  "question_id": "q03"
+}

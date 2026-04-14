@@ -1,0 +1,10 @@
+{
+  "source": "day08/lab/results/scorecard_baseline.md + eval run",
+  "total_questions": 15,
+  "avg_faithfulness_5": 3.8,
+  "avg_relevance_5": 3.9,
+  "avg_latency_ms_estimate": 2100,
+  "abstain_rate": "1/15 (q09 insufficient context)",
+  "multi_hop_accuracy": "partial — single RAG pipeline, no explicit routing/trace",
+  "notes": "Day 08 monolithic RAG; khó phân tách lỗi retrieval vs generation."
+}

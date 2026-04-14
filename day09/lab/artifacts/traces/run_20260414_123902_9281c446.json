@@ -1,0 +1,332 @@
+{
+  "task": "Contractor cần Admin Access (Level 3) để khắc phục sự cố P1 đang active. Quy trình cấp quyền tạm thời như thế nào?",
+  "route_reason": "policy_tool_worker | contractor + access / level (cross-doc policy path) | Level 3 access / approval policy | MCP: search_kb for evidence (not direct Chroma in policy worker)",
+  "risk_high": false,
+  "needs_tool": true,
+  "hitl_triggered": true,
+  "retrieved_chunks": [
+    {
+      "text": "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3.",
+      "source": "refund-v4.pdf",
+      "score": 0.1055,
+      "metadata": {
+        "effective_date": "2026-02-01",
+        "source": "policy/refund-v4.pdf",
+        "department": "CS",
+        "section": "Điều 1: Phạm vi áp dụng",
+        "access": "internal"
+      }
+    },
+    {
+      "text": "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.0501,
+      "metadata": {
+        "access": "internal",
+        "source": "support/sla-p1-2026.pdf",
+        "department": "IT",
+        "section": "Phần 2: SLA theo mức độ ưu tiên",
+        "effective_date": "2026-01-15"
+      }
+    },
+    {
+      "text": "Ticket system: Jira (project IT-ACCESS)\nIAM system: Okta\nAudit log: Splunk\nEmail: it-access@company.internal",
+      "source": "access-control-sop.md",
+      "score": 0.0494,
+      "metadata": {
+        "effective_date": "2026-01-01",
+        "source": "it/access-control-sop.md",
+        "section": "Section 7: Công cụ liên quan",
+        "access": "internal",
+        "department": "IT Security"
+      }
+    },
+    {
+      "text": "P1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ.",
+      "source": "sla-p1-2026.pdf",
+      "score": 0.0397,
+      "metadata": {
+        "source": "support/sla-p1-2026.pdf",
+        "access": "internal",
+        "department": "IT",
+        "effective_date": "2026-01-15",
+        "section": "Phần 1: Định nghĩa mức độ ưu tiên"
+      }
+    },
+    {
+      "text": "3.1 Điều kiện làm thêm:\nLàm thêm giờ phải được Line Manager phê duyệt trước bằng văn bản.\n\n3.2 Hệ số lương làm thêm:\n- Ngày thường: 150% lương giờ tiêu chuẩn.\n- Ngày cuối tuần: 200% lương giờ tiêu chuẩn.\n- Ngày lễ: 300% lương giờ tiêu chuẩn.",
+      "source": "leave-policy-2026.pdf",
+      "score": 0.0333,
+      "metadata": {
+        "source": "hr/leave-policy-2026.pdf",
+        "department": "HR",
+        "section": "Phần 3: Chính sách làm thêm giờ",
+        "effective_date": "2026-01-01",
+        "access": "internal"
+      }
+    },
+    {
+      "text": "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
+      "source": "helpdesk-faq.md",
+      "score": 0.0281,
+      "metadata": {
+        "section": "Section 4: Thiết bị và phần cứng",
+        "effective_date": "2026-01-20",
+        "department": "IT",
+        "access": "internal",
+        "source": "support/helpdesk-faq.md"
+      }
+    },
+    {
+      "text": "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team.",
+      "source": "leave-policy-2026.pdf",
+      "score": 0.0221,
+      "metadata": {
+        "access": "internal",
+        "effective_date": "2026-01-01",
+        "source": "hr/leave-policy-2026.pdf",
+        "section": "Phần 4: Remote work policy",
+        "department": "HR"
+      }
+    },
+    {
+      "text": "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
+      "source": "access-control-sop.md",
+      "score": 0.0186,
+      "metadata": {
+        "department": "IT Security",
+        "effective_date": "2026-01-01",
+        "section": "Section 3: Quy trình yêu cầu cấp quyền",
+        "access": "internal",
+        "source": "it/access-control-sop.md"
+      }
+    }
+  ],
+  "retrieved_sources": [
+    "leave-policy-2026.pdf",
+    "access-control-sop.md",
+    "sla-p1-2026.pdf",
+    "helpdesk-faq.md",
+    "refund-v4.pdf"
+  ],
+  "policy_result": {
+    "policy_applies": true,
+    "policy_name": "refund_policy_v4",
+    "exceptions_found": [],
+    "source": [
+      "leave-policy-2026.pdf",
+      "access-control-sop.md",
+      "sla-p1-2026.pdf",
+      "helpdesk-faq.md",
+      "refund-v4.pdf"
+    ],
+    "policy_version_note": "",
+    "explanation": "Analyzed via rule-based policy check. TODO: upgrade to LLM-based analysis."
+  },
+  "mcp_tools_used": [
+    {
+      "tool": "search_kb",
+      "input": {
+        "query": "Contractor cần Admin Access (Level 3) để khắc phục sự cố P1 đang active. Quy trình cấp quyền tạm thời như thế nào?",
+        "top_k": 8
+      },
+      "output": {
+        "chunks": [
+          {
+            "text": "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3.",
+            "source": "refund-v4.pdf",
+            "score": 0.1055,
+            "metadata": {
+              "effective_date": "2026-02-01",
+              "source": "policy/refund-v4.pdf",
+              "department": "CS",
+              "section": "Điều 1: Phạm vi áp dụng",
+              "access": "internal"
+            }
+          },
+          {
+            "text": "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
+            "source": "sla-p1-2026.pdf",
+            "score": 0.0501,
+            "metadata": {
+              "access": "internal",
+              "source": "support/sla-p1-2026.pdf",
+              "department": "IT",
+              "section": "Phần 2: SLA theo mức độ ưu tiên",
+              "effective_date": "2026-01-15"
+            }
+          },
+          {
+            "text": "Ticket system: Jira (project IT-ACCESS)\nIAM system: Okta\nAudit log: Splunk\nEmail: it-access@company.internal",
+            "source": "access-control-sop.md",
+            "score": 0.0494,
+            "metadata": {
+              "effective_date": "2026-01-01",
+              "source": "it/access-control-sop.md",
+              "section": "Section 7: Công cụ liên quan",
+              "access": "internal",
+              "department": "IT Security"
+            }
+          },
+          {
+            "text": "P1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ.",
+            "source": "sla-p1-2026.pdf",
+            "score": 0.0397,
+            "metadata": {
+              "source": "support/sla-p1-2026.pdf",
+              "access": "internal",
+              "department": "IT",
+              "effective_date": "2026-01-15",
+              "section": "Phần 1: Định nghĩa mức độ ưu tiên"
+            }
+          },
+          {
+            "text": "3.1 Điều kiện làm thêm:\nLàm thêm giờ phải được Line Manager phê duyệt trước bằng văn bản.\n\n3.2 Hệ số lương làm thêm:\n- Ngày thường: 150% lương giờ tiêu chuẩn.\n- Ngày cuối tuần: 200% lương giờ tiêu chuẩn.\n- Ngày lễ: 300% lương giờ tiêu chuẩn.",
+            "source": "leave-policy-2026.pdf",
+            "score": 0.0333,
+            "metadata": {
+              "source": "hr/leave-policy-2026.pdf",
+              "department": "HR",
+              "section": "Phần 3: Chính sách làm thêm giờ",
+              "effective_date": "2026-01-01",
+              "access": "internal"
+            }
+          },
+          {
+            "text": "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
+            "source": "helpdesk-faq.md",
+            "score": 0.0281,
+            "metadata": {
+              "section": "Section 4: Thiết bị và phần cứng",
+              "effective_date": "2026-01-20",
+              "department": "IT",
+              "access": "internal",
+              "source": "support/helpdesk-faq.md"
+            }
+          },
+          {
+            "text": "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team.",
+            "source": "leave-policy-2026.pdf",
+            "score": 0.0221,
+            "metadata": {
+              "access": "internal",
+              "effective_date": "2026-01-01",
+              "source": "hr/leave-policy-2026.pdf",
+              "section": "Phần 4: Remote work policy",
+              "department": "HR"
+            }
+          },
+          {
+            "text": "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
+            "source": "access-control-sop.md",
+            "score": 0.0186,
+            "metadata": {
+              "department": "IT Security",
+              "effective_date": "2026-01-01",
+              "section": "Section 3: Quy trình yêu cầu cấp quyền",
+              "access": "internal",
+              "source": "it/access-control-sop.md"
+            }
+          }
+        ],
+        "sources": [
+          "leave-policy-2026.pdf",
+          "access-control-sop.md",
+          "sla-p1-2026.pdf",
+          "helpdesk-faq.md",
+          "refund-v4.pdf"
+        ],
+        "total_found": 8
+      },
+      "error": null,
+      "timestamp": "2026-04-14T12:39:02.789866"
+    },
+    {
+      "tool": "get_ticket_info",
+      "input": {
+        "ticket_id": "P1-LATEST"
+      },
+      "output": {
+        "ticket_id": "IT-9847",
+        "priority": "P1",
+        "title": "API Gateway down — toàn bộ người dùng không đăng nhập được",
+        "status": "in_progress",
+        "assignee": "nguyen.van.a@company.internal",
+        "created_at": "2026-04-13T22:47:00",
+        "sla_deadline": "2026-04-14T02:47:00",
+        "escalated": true,
+        "escalated_to": "senior_engineer_team",
+        "notifications_sent": [
+          "slack:#incident-p1",
+          "email:incident@company.internal",
+          "pagerduty:oncall"
+        ]
+      },
+      "error": null,
+      "timestamp": "2026-04-14T12:39:02.789866"
+    }
+  ],
+  "final_answer": "Không đủ thông tin trong tài liệu nội bộ đã cung cấp.",
+  "sources": [
+    "leave-policy-2026.pdf",
+    "access-control-sop.md",
+    "sla-p1-2026.pdf",
+    "helpdesk-faq.md",
+    "refund-v4.pdf"
+  ],
+  "confidence": 0.35,
+  "history": [
+    "[supervisor] received task: Contractor cần Admin Access (Level 3) để khắc phục sự cố P1 đang active. Quy trình cấp quyền tạm thời như thế nào?",
+    "[supervisor] route=policy_tool_worker needs_tool=True reason=policy_tool_worker | contractor + access / level (cross-doc policy path) | Level 3 access / approval policy",
+    "[policy_tool_worker] MCP search_kb top_k=8 (policy path — no direct Chroma)",
+    "[policy_tool_worker] called MCP get_ticket_info",
+    "[policy_tool_worker] policy_applies=True, exceptions=0",
+    "[synthesis_worker] confidence=0.35 sources=['leave-policy-2026.pdf', 'access-control-sop.md', 'sla-p1-2026.pdf', 'helpdesk-faq.md', 'refund-v4.pdf']",
+    "[graph] completed in 4381ms"
+  ],
+  "workers_called": [
+    "policy_tool_worker",
+    "synthesis_worker"
+  ],
+  "worker_io_logs": [
+    {
+      "worker": "policy_tool_worker",
+      "input": {
+        "task": "Contractor cần Admin Access (Level 3) để khắc phục sự cố P1 đang active. Quy trình cấp quyền tạm thời như thế nào?",
+        "chunks_count": 0,
+        "needs_tool": true
+      },
+      "output": {
+        "policy_applies": true,
+        "exceptions_count": 0,
+        "mcp_calls": 2
+      },
+      "error": null
+    },
+    {
+      "worker": "synthesis_worker",
+      "input": {
+        "task": "Contractor cần Admin Access (Level 3) để khắc phục sự cố P1 đang active. Quy trình cấp quyền tạm thời như thế nào?",
+        "chunks_count": 8,
+        "has_policy": true
+      },
+      "output": {
+        "answer_length": 53,
+        "sources": [
+          "leave-policy-2026.pdf",
+          "access-control-sop.md",
+          "sla-p1-2026.pdf",
+          "helpdesk-faq.md",
+          "refund-v4.pdf"
+        ],
+        "confidence": 0.35
+      },
+      "error": null
+    }
+  ],
+  "supervisor_route": "policy_tool_worker",
+  "latency_ms": 4381,
+  "run_id": "run_20260414_123902_9281c446",
+  "retrieval_top_k": 8,
+  "question_id": "q13"
+}
